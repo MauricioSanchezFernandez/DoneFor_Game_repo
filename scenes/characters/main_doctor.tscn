@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cf8cjcuv7oqrt"]
+
+[ext_resource type="Script" uid="uid://du1lyyyx5xymd" path="res://scripts/characters/main_doctor.gd" id="1_8ya2b"]
+[ext_resource type="Texture2D" uid="uid://dw2if8bj3qdjy" path="res://sprites/characters/main_doctor(sheet)/idle_doctor-Sheet.png" id="1_uvnu6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lvnr"]
+radius = 6.0
+height = 38.0
+
+[node name="main_doctor" type="CharacterBody2D" unique_id=1456715956]
+script = ExtResource("1_8ya2b")
+
+[node name="AM_main" type="Node2D" parent="." unique_id=65775426]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AM_main" unique_id=1752054706]
+root_node = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="AM_main" unique_id=2014249733]
+position = Vector2(-11, 0)
+texture = ExtResource("1_uvnu6")
+region_enabled = true
+region_rect = Rect2(0, 0, 44, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=353267797]
+position = Vector2(0, 16)
+shape = SubResource("CapsuleShape2D_6lvnr")
