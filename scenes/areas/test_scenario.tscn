@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ngel1khcc8l"]
+
+[ext_resource type="Texture2D" uid="uid://cqniiiexq1bjw" path="res://sprites/other/icon.svg" id="1_mdri8"]
+[ext_resource type="PackedScene" uid="uid://cf8cjcuv7oqrt" path="res://scenes/characters/main_doctor.tscn" id="2_th2ql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ge01p"]
+size = Vector2(420, 123)
+
+[node name="TestScenario" type="Node2D" unique_id=597872062]
+
+[node name="surface" type="StaticBody2D" parent="." unique_id=821953387]
+
+[node name="Sprite2D" type="Sprite2D" parent="surface" unique_id=1301809599]
+position = Vector2(92, 200)
+scale = Vector2(3.2734375, 1)
+texture = ExtResource("1_mdri8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="surface" unique_id=1615425728]
+position = Vector2(90, 197)
+shape = SubResource("RectangleShape2D_ge01p")
+
+[node name="main_doctor" parent="." unique_id=1456715956 instance=ExtResource("2_th2ql")]
+position = Vector2(35, 16)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Done_For"
-run/main_scene="uid://dnpe5k3u1gfke"
+run/main_scene="uid://ngel1khcc8l"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://sprites/other/icon.svg"
 
