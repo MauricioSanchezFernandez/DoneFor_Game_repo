@@ -1,12 +1,12 @@
 extends CharacterBody2D
 @onready var animsprite: AnimatedSprite2D = $AM_main/AnimatedSprite2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 400.0
+const JUMP_VELOCITY = -450.0
 
 const DASH_SPEED = 800.0       
-const DASH_DURATION = 0.2     
-const DASH_COOLDOWN = 0.75     
+const DASH_DURATION = 0.25     
+const DASH_COOLDOWN = 0.65     
 
 var walk = false
 var lantern = false
@@ -57,10 +57,10 @@ func _physics_process(delta: float) -> void:
 		is_attacking = true
 		if not lantern:
 			lantern = true
-			animsprite.play("attack")
+			animsprite.play("attack", 2.5)
 		else:
 			lantern = false
-			animsprite.play("attack_end")
+			animsprite.play("attack_end", 2.5)
 			
 		await animsprite.animation_finished
 		is_attacking = false
