@@ -9,4 +9,25 @@
 position = Vector2(35, 16)
 
 [node name="testsurface" parent="." unique_id=44443727 instance=ExtResource("2_mdri8")]
-position = Vector2(13, 178)
+position = Vector2(9, 180)
+
+[node name="testsurface" parent="testsurface" unique_id=214589500 instance=ExtResource("2_mdri8")]
+position = Vector2(191, 0)
+
+[node name="testsurface2" parent="." unique_id=1662956192 instance=ExtResource("2_mdri8")]
+position = Vector2(-178, 178)
+
+[node name="testsurface" parent="testsurface2" unique_id=1292824133 instance=ExtResource("2_mdri8")]
+position = Vector2(743, 0)
+
+[node name="testsurface2" parent="testsurface2" unique_id=1962596148 instance=ExtResource("2_mdri8")]
+position = Vector2(-189, 2)
+
+[node name="testsurface" parent="testsurface2/testsurface2" unique_id=1847467950 instance=ExtResource("2_mdri8")]
+position = Vector2(756, -1)
+
+[node name="testsurface3" parent="testsurface2" unique_id=1723987811 instance=ExtResource("2_mdri8")]
+position = Vector2(-566, 1)
+
+[node name="testsurface" parent="testsurface2/testsurface3" unique_id=896942601 instance=ExtResource("2_mdri8")]
+position = Vector2(187, 0)
