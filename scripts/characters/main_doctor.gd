@@ -1,55 +1,110 @@
 extends CharacterBody2D
 @onready var animsprite: AnimatedSprite2D = $AM_main/AnimatedSprite2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var walk = false
 
+const DASH_SPEED = 800.0       
+const DASH_DURATION = 0.2     
+const DASH_COOLDOWN = 1.0     
+
+var walk = false
+var lantern = false
+var is_attacking = false
+
+var is_dashing = false         
+var is_dash_ending = false    
+var can_dash = true           
+var dash_direction = 1.0       
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
+	
+	if not is_on_floor() and not is_dashing:
 		velocity += get_gravity() * delta
-	if not is_on_floor() and velocity.y < 0:
-		animsprite.animation = "jump"
-	if not is_on_floor() and velocity.y > 0:
-		animsprite.animation = "fall1"
-	
-	if velocity.x == velocity.y and velocity.x == 0 and walk == false and is_on_floor():
-		animsprite.animation = "idle1"
-	
-	if velocity.x != 0 and animsprite.animation != "walk1" and is_on_floor():
-		animsprite.animation = "walk1"
-		walk = true
-		
-	if velocity.x == 0 and velocity.x == velocity.y and walk and is_on_floor():
-		walk = false
-		animsprite.animation = "stop1"
+
+	if is_dashing:
+		velocity.x = dash_direction * DASH_SPEED
+		velocity.y = 0 
+		move_and_slide()
+		return
+
+	if is_dash_ending or is_attacking:
+		velocity.x = 0
+		move_and_slide()
+		return
+
+	if Input.is_action_just_pressed("ui_dash") and can_dash:
+		start_dash()
+		return 
+
+	if Input.is_action_just_pressed("ui_attack") and is_on_floor():
+		is_attacking = true
+		velocity.x = 0 
+		if not lantern:
+			lantern = true
+			animsprite.play("attack")
+		else:
+			lantern = false
+			animsprite.play("attack_end")
+			
 		await animsprite.animation_finished
-		animsprite.animation = "walk1"
-		
-		
-		#Falta hacer un toggle que active una variable de "ataque", donde el médico tenga el farolillo fuera por un tiempo,
-		# cambiando las animaciones. Es añadir una variable y meter un "and" más, no pasa na
-		
-		
+		is_attacking = false
+		return 
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
+	
 	if direction:
 		velocity.x = direction * SPEED
+		walk = true
+		dash_direction = sign(direction) 
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		walk = false
 
-	move_and_slide()
-	
 	if direction == 1.0:
 		animsprite.flip_h = false
 	elif direction == -1.0:
 		animsprite.flip_h = true
+
+	if direction == 0:
+		dash_direction = -1.0 if animsprite.flip_h else 1.0
+
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	if not is_on_floor():
+		if velocity.y < 0:
+			animsprite.play("jump")
+		else:
+			animsprite.play("fall2" if lantern else "fall1")
+	else:
+		if walk:
+			animsprite.play("walk2" if lantern else "walk1")
+		else:
+			animsprite.play("idle2" if lantern else "idle1")
+
+	move_and_slide()
+
+func start_dash() -> void:
+	is_dashing = true
+	can_dash = false
+	
+	animsprite.play("dash") 
+
+	await get_tree().create_timer(DASH_DURATION).timeout
+	is_dashing = false
+	
+	is_dash_ending = true
+	velocity.x = 0 
+	
+	if lantern:
+		animsprite.play("stop2")
+	else:
+		animsprite.play("stop1")
+		
+	await animsprite.animation_finished 
+	
+	is_dash_ending = false 
+
+	await get_tree().create_timer(DASH_COOLDOWN).timeout
+	can_dash = true

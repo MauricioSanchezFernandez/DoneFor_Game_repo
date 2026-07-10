@@ -425,7 +425,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p6624")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -448,7 +448,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_skv8r")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack_end",
 "speed": 5.0
 }, {
@@ -554,7 +554,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iqjy6")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hit1",
 "speed": 5.0
 }, {
@@ -577,7 +577,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0e5ny")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hit2",
 "speed": 5.0
 }, {
@@ -710,7 +710,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uedgr")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"stop2",
 "speed": 5.0
 }, {
@@ -787,7 +787,7 @@ script = ExtResource("1_8ya2b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AM_main" unique_id=93528904]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_mf0bo")
-animation = &"jump"
+animation = &"attack"
 autoplay = "idle1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=353267797]
