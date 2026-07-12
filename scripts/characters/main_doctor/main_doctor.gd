@@ -144,9 +144,9 @@ func start_dash() -> void:
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if not animsprite: return
 	
+	#animaciones con las que la hitbox estará activa
 	
 	var attackAnims = ["walk2","idle2","attackhold","fall2","stop2"]
-	var frame = animsprite.frame 
 	
 	if animsprite.animation in attackAnims:
 		hit_box.set_active(true)

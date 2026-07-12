@@ -1,6 +1,8 @@
 extends Area2D
 class_name HurtBox
 
+#señales para conectar la hurtbox y la hitbox, autoexplicativo
+
 signal hurted()
 signal died()
 

@@ -4,6 +4,7 @@ extends CharacterBody2D
 #Todo esto es basicamente una plantilla. Cada personaje tendrá sus propias animaciones y deben ser sustituidas. 
 
 func _on_hurt_box_died() -> void:
+	#borra a badeline (D:)
 	queue_free()
 	
 	
