@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://den6bujuslear"]
+
+[ext_resource type="Texture2D" uid="uid://85txehm5k6cc" path="res://sprites/other/Badeline_portrait.png" id="1_5fwnf"]
+[ext_resource type="Script" uid="uid://bq8gsq2bvr7ru" path="res://scripts/characters/enemytest/enemy_test.gd" id="1_y24a4"]
+[ext_resource type="PackedScene" uid="uid://ci3vudp103ep8" path="res://hit/hurt_box.tscn" id="2_2h2it"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lvnr"]
+size = Vector2(159, 161)
+
+[node name="EnemyTest" type="CharacterBody2D" unique_id=1837115314]
+script = ExtResource("1_y24a4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1171950432]
+position = Vector2(115, 84)
+texture = ExtResource("1_5fwnf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=348225313]
+position = Vector2(114.5, 83.5)
+shape = SubResource("RectangleShape2D_6lvnr")
+
+[node name="HurtBox" parent="." unique_id=533131634 instance=ExtResource("2_2h2it")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1166637911]
+position = Vector2(114.5, 83.5)
+shape = SubResource("RectangleShape2D_6lvnr")
+debug_color = Color(0.99594396, 0, 0.20445159, 0.41960785)
+
+[connection signal="died" from="HurtBox" to="." method="_on_hurt_box_died"]
+[connection signal="hurted" from="HurtBox" to="." method="_on_hurt_box_hurted"]

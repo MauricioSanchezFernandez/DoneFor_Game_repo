@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cf8cjcuv7oqrt"]
 
-[ext_resource type="Script" uid="uid://du1lyyyx5xymd" path="res://scripts/characters/main_doctor.gd" id="1_8ya2b"]
+[ext_resource type="Script" uid="uid://du1lyyyx5xymd" path="res://scripts/characters/main_doctor/main_doctor.gd" id="1_8ya2b"]
 [ext_resource type="Texture2D" uid="uid://dw2if8bj3qdjy" path="res://sprites/characters/main_doctor(sheet)/idle_doctor-Sheet.png" id="1_uvnu6"]
 [ext_resource type="Texture2D" uid="uid://ir4w8kyr5ra7" path="res://sprites/characters/main_doctor(sheet)/attack_doctor-Sheet.png" id="2_1esrx"]
 [ext_resource type="Texture2D" uid="uid://b0irjdjxe2koj" path="res://sprites/characters/main_doctor(sheet)/attack1.2_doctor-Sheet.png" id="3_irpfv"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://blxo44c6i7v6o" path="res://sprites/characters/main_doctor(sheet)/stopping2_doctor-Sheet.png" id="13_71bk6"]
 [ext_resource type="Texture2D" uid="uid://c5h7gm7l0cg7k" path="res://sprites/characters/main_doctor(sheet)/walk_doctor-Sheet.png" id="14_y762j"]
 [ext_resource type="Texture2D" uid="uid://bv7of2xyfno0x" path="res://sprites/characters/main_doctor(sheet)/walk2_doctor-Sheet.png" id="15_j1roq"]
+[ext_resource type="PackedScene" uid="uid://bog80c8haes4n" path="res://hit/hit_box.tscn" id="16_irpfv"]
+[ext_resource type="Script" uid="uid://bwqddtaqa5kv8" path="res://other/pivot.gd" id="16_toe64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8ek7"]
 atlas = ExtResource("2_1esrx")
@@ -777,6 +779,9 @@ animations = [{
 radius = 13.0
 height = 86.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lvnr"]
+size = Vector2(92, 111)
+
 [node name="main_doctor" type="CharacterBody2D" unique_id=1456715956]
 script = ExtResource("1_8ya2b")
 
@@ -787,9 +792,21 @@ script = ExtResource("1_8ya2b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AM_main" unique_id=93528904]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_mf0bo")
-animation = &"attack"
+animation = &"attack_end"
 autoplay = "idle1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=353267797]
 position = Vector2(-4, 42)
 shape = SubResource("CapsuleShape2D_6lvnr")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1435798273]
+script = ExtResource("16_toe64")
+
+[node name="hit_box" parent="Pivot" unique_id=1804522308 instance=ExtResource("16_irpfv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/hit_box" unique_id=1702314807]
+position = Vector2(60, 34)
+shape = SubResource("RectangleShape2D_6lvnr")
+debug_color = Color(0.85877, 0.3642813, 7.70092e-07, 0.41960785)
+
+[connection signal="frame_changed" from="AM_main/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

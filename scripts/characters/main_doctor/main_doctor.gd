@@ -1,12 +1,13 @@
 extends CharacterBody2D
 @onready var animsprite: AnimatedSprite2D = $AM_main/AnimatedSprite2D
+@onready var hit_box: HitBox = $Pivot/hit_box
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -450.0
 
-const DASH_SPEED = 800.0       
+const DASH_SPEED = 900.0       
 const DASH_DURATION = 0.25     
-const DASH_COOLDOWN = 0.65     
+const DASH_COOLDOWN = 0.35     
 
 var walk = false
 var lantern = false
@@ -132,3 +133,22 @@ func start_dash() -> void:
 
 	await get_tree().create_timer(DASH_COOLDOWN).timeout
 	can_dash = true
+	
+	
+	
+	"""
+	Hitbox activada SOLO cuando ya ha sacado el farolillo por completo (Si resulta que el farolillo al final purifica,
+	cambiaré esto por la animación de ataque)
+	"""
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if not animsprite: return
+	
+	
+	var attackAnims = ["walk2","idle2","attackhold","fall2","stop2"]
+	var frame = animsprite.frame 
+	
+	if animsprite.animation in attackAnims:
+		hit_box.set_active(true)
+	else:
+		hit_box.set_active(false)
