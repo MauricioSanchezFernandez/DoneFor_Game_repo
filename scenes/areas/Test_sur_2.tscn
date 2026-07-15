@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://clmr6tb7mhy7g"]
+
+[ext_resource type="PackedScene" uid="uid://ce7vhcy2mevcp" path="res://scenes/areas/testsurface.tscn" id="1_5s16q"]
+[ext_resource type="PackedScene" uid="uid://cf8cjcuv7oqrt" path="res://scenes/characters/main_doctor.tscn" id="2_p1uro"]
+[ext_resource type="Script" uid="uid://dbdheryhu8t7o" path="res://scripts/Paredes de salas/Test_pared2.gd" id="3_mem6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(183, 184.5)
+
+[node name="Node2D" type="Node2D" unique_id=1685888114]
+
+[node name="testsurface" parent="." unique_id=44443727 instance=ExtResource("1_5s16q")]
+position = Vector2(239, 181)
+
+[node name="testsurface" parent="testsurface" unique_id=1802259857 instance=ExtResource("1_5s16q")]
+position = Vector2(184, 0)
+
+[node name="testsurface" parent="testsurface/testsurface" unique_id=464132691 instance=ExtResource("1_5s16q")]
+position = Vector2(184, -78)
+
+[node name="main_doctor" parent="." unique_id=1456715956 instance=ExtResource("2_p1uro")]
+position = Vector2(429, 80)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1368932329]
+script = ExtResource("3_mem6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1619650047]
+position = Vector2(691, 0)
+shape = SubResource("RectangleShape2D_g4v7s")
+debug_color = Color(3.85046e-06, 0.5832948, 0.7889525, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

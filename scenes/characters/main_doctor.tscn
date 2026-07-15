@@ -795,7 +795,7 @@ sprite_frames = SubResource("SpriteFrames_mf0bo")
 animation = &"attack_end"
 autoplay = "idle1"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=353267797]
+[node name="main_doctor_hitbox" type="CollisionShape2D" parent="." unique_id=353267797]
 position = Vector2(-4, 42)
 shape = SubResource("CapsuleShape2D_6lvnr")
 
@@ -803,6 +803,7 @@ shape = SubResource("CapsuleShape2D_6lvnr")
 script = ExtResource("16_toe64")
 
 [node name="hit_box" parent="Pivot" unique_id=1804522308 instance=ExtResource("16_irpfv")]
+position = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/hit_box" unique_id=1702314807]
 position = Vector2(60, 34)
