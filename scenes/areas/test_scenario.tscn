@@ -15,7 +15,7 @@ size = Vector2(129, 475)
 [node name="TestScenario" type="Node2D" unique_id=597872062]
 
 [node name="main_doctor" parent="." unique_id=1456715956 instance=ExtResource("2_th2ql")]
-position = Vector2(4, 2)
+position = Vector2(613, 79)
 
 [node name="testsurface" parent="." unique_id=44443727 instance=ExtResource("2_mdri8")]
 position = Vector2(9, 180)

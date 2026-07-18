@@ -18,6 +18,14 @@ var end_dashing = false
 var can_dash = true           
 var dash_direction = 1.0       
 
+func _ready():
+	if SceneManager.leftRight == false:
+		global_position.x = SceneManager.pos_scenesRight_x[SceneManager.actualScene]
+		global_position.y = SceneManager.pos_scenesRight_y[SceneManager.actualScene]
+	else: 
+		global_position.x = SceneManager.pos_scenesLeft_x[SceneManager.actualScene]
+		global_position.y = SceneManager.pos_scenesLeft_y[SceneManager.actualScene]
+
 func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor() and not is_dashing:
