@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cw7vsi78it3c1"]
+
+[ext_resource type="PackedScene" uid="uid://ngel1khcc8l" path="res://scenes/areas/test_scenario.tscn" id="1_hmy4i"]
+
+[node name="TestScenario" unique_id=597872062 instance=ExtResource("1_hmy4i")]
+
+[node name="main_doctor" parent="." index="0" unique_id=1456715956]
+position = Vector2(-511, 80)
+
+[node name="Label" type="Label" parent="." index="3" unique_id=1010032212]
+offset_left = 119.0
+offset_top = 16.0
+offset_right = 181.0
+offset_bottom = 44.0
+text = "TEST 3"

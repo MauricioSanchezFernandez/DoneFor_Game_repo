@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ce7vhcy2mevcp" path="res://scenes/areas/testsurface.tscn" id="1_5s16q"]
 [ext_resource type="PackedScene" uid="uid://cf8cjcuv7oqrt" path="res://scenes/characters/main_doctor.tscn" id="2_p1uro"]
-[ext_resource type="Script" uid="uid://dbdheryhu8t7o" path="res://scripts/Paredes de salas/Test_pared2.gd" id="3_mem6c"]
+[ext_resource type="Script" uid="uid://dbdheryhu8t7o" path="res://scenes/areas/Test_pared2.gd" id="3_mem6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(183, 184.5)
