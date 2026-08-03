@@ -15,6 +15,13 @@ func change_scene():
 	var string2 = string1 % SceneManager.scenes[SceneManager.actualScene]
 	get_tree().change_scene_to_file(string2)
 	
+<<<<<<< Updated upstream
 	player.instantiate()
 	player.global_position.x = SceneManager.pos_scenesLeft_x[SceneManager.actualScene]
 	player.global_position.y = SceneManager.pos_scenesLeft_y[SceneManager.actualScene]
+=======
+	#que coño habeis hecho aqui que rompe todo y funciona todo el tema coordenadas
+	#sin esto wtf
+	#player.global_position.x = SceneManager.pos_scenesLeft_x[SceneManager.actualScene]
+	#player.global_position.y = SceneManager.pos_scenesLeft_y[SceneManager.actualScene]
+>>>>>>> Stashed changes
