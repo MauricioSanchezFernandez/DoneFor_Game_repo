@@ -5,11 +5,7 @@ extends Node2D
 #cuando el personaje se gire.
 #TODO: parece que se gira demasiado poco a la izquierda.
 
-<<<<<<< Updated upstream
-func _physics_process(delta):
-=======
 func _physics_process(_delta):
->>>>>>> Stashed changes
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
 	if direction > 0:

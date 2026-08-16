@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ir4w8kyr5ra7" path="res://sprites/characters/main_doctor(sheet)/attack_doctor-Sheet.png" id="2_1esrx"]
 [ext_resource type="Texture2D" uid="uid://b0irjdjxe2koj" path="res://sprites/characters/main_doctor(sheet)/attack1.2_doctor-Sheet.png" id="3_irpfv"]
 [ext_resource type="Texture2D" uid="uid://bgx0ghd54g2mh" path="res://sprites/characters/main_doctor(sheet)/dash_doctor-Sheet.png" id="4_toe64"]
+[ext_resource type="Texture2D" uid="uid://h1duym287jlk" path="res://sprites/characters/main_doctor(sheet)/death_doctor-Sheet.png" id="5_hv5u3"]
 [ext_resource type="Texture2D" uid="uid://b2aynjcel0sj0" path="res://sprites/characters/main_doctor(sheet)/fall_doctor-Sheet.png" id="5_xs3ee"]
 [ext_resource type="Texture2D" uid="uid://vpj20j5wy57l" path="res://sprites/characters/main_doctor(sheet)/fall2_doctor-Sheet.png" id="6_hv5u3"]
 [ext_resource type="Texture2D" uid="uid://bmyoxsrpsau7q" path="res://sprites/characters/main_doctor(sheet)/hit_doctor-Sheet.png" id="7_sdrqq"]
@@ -101,6 +102,38 @@ region = Rect2(70, 0, 70, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j430b"]
 atlas = ExtResource("4_toe64")
 region = Rect2(140, 0, 70, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdrqq"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(0, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4spo"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(70, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc3wc"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(140, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eywgl"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(210, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lrr4"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(280, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71bk6"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(350, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y762j"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(420, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1roq"]
+atlas = ExtResource("5_hv5u3")
+region = Rect2(490, 0, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pwj7"]
 atlas = ExtResource("5_xs3ee")
@@ -493,6 +526,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sdrqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4spo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc3wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eywgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lrr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71bk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y762j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1roq")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8pwj7")
 }, {
 "duration": 1.0,
@@ -775,12 +837,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lvnr"]
+size = Vector2(92, 111)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lvnr"]
 radius = 13.0
 height = 86.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lvnr"]
-size = Vector2(92, 111)
 
 [node name="main_doctor" type="CharacterBody2D" unique_id=1456715956]
 script = ExtResource("1_8ya2b")
@@ -792,12 +854,8 @@ script = ExtResource("1_8ya2b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AM_main" unique_id=93528904]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_mf0bo")
-animation = &"attack_end"
+animation = &"death"
 autoplay = "idle1"
-
-[node name="main_doctor_hitbox" type="CollisionShape2D" parent="." unique_id=353267797]
-position = Vector2(-4, 42)
-shape = SubResource("CapsuleShape2D_6lvnr")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1435798273]
 script = ExtResource("16_toe64")
@@ -809,5 +867,9 @@ position = Vector2(1, 0)
 position = Vector2(60, 34)
 shape = SubResource("RectangleShape2D_6lvnr")
 debug_color = Color(0.85877, 0.3642813, 7.70092e-07, 0.41960785)
+
+[node name="main_doctor_hitbox" type="CollisionShape2D" parent="." unique_id=353267797]
+position = Vector2(-4, 42)
+shape = SubResource("CapsuleShape2D_6lvnr")
 
 [connection signal="frame_changed" from="AM_main/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
